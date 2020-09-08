@@ -8,10 +8,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use GuzzleHttp\Client;
 use Http\Client\Exception\HttpException;
-use http\Client\Response;
+use Http\Client\Response;
 use GuzzleHttp\Exception\RequestException;
 
-class TransferenciaController extends AppBaseController
+class TransferenciaController extends Controller
 {
 
     public $messages = [
