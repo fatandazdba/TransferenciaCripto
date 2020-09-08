@@ -14,8 +14,9 @@ class CreateTransferenciasTable extends Migration
     public function up()
     {
         Schema::create('transferencias', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id', 50);
             $table->timestamps();
+            $table->engine = 'InnoDB'; // !! Aquii
         });
     }
 
