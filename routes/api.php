@@ -18,4 +18,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('loginExterno', 'EntityAPIController@loginExterno');
+Route::get('addressFull', 'TransferenciaController@addressFull');
+Route::get('balanceAddress', 'TransferenciaController@balanceAddress');
+Route::get('transactionHashEndpoint', 'TransferenciaController@transactionHashEndpoint');
+Route::post('address', 'TransferenciaController@address');
+Route::post('microTransferencia', 'TransferenciaController@microTransferencia');
