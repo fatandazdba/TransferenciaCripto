@@ -14,9 +14,15 @@ class CreateTransferenciasTable extends Migration
     public function up()
     {
         Schema::create('transferencias', function (Blueprint $table) {
-            $table->increments('id', 50);
+            $table->engine = 'InnoDB';
+            $table->bigIncrements('id');
+            $table->string('hash, 200');
             $table->timestamps();
-            $table->engine = 'InnoDB'; // !! Aquii
+
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+
+
         });
     }
 
