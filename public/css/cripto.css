@@ -9,3 +9,15 @@ Cambios en el template
     width: 100%;
     height: 688px;
 }
+
+.align-content-center.size {
+    width: 71%;
+    padding-top: 11%;
+    padding-left: 2%;
+    margin: auto;
+/* background-color: red;*/
+}
+
+input#search_address {
+width: 64% !important;
+}
