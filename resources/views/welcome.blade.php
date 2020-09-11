@@ -18,4 +18,8 @@
 
         </div>
     </div>
+
+    <?php
+           $name= App\Http\Controllers\TransferenciaController::addressFull($args)
+    ?>
 @endsection

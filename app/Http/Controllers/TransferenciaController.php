@@ -21,6 +21,63 @@ class TransferenciaController extends Controller
     ];
 
     /**
+     * GET | Obtiene el ultimo hash realizado en blockchain
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function chainEndPoint(Request $request)
+    {
+        $token = env("BLOCKCYPHER_API_TOKEN");
+        $headers = [
+            'Accept' => 'application/json',
+            'Content-type' => 'application/json',
+        ];
+
+        $params = [
+            'limit' => '50',
+            'Token' => $token,
+        ];
+
+        $validator = \Illuminate\Support\Facades\Validator::make($request->all(), [
+            'address' => 'required',
+        ], $this->messages);
+
+        if ($validator->fails()) {
+            $error = $validator->errors()->first();
+            return response()->json(['data' => $error], 400);
+        }
+
+        $url = 'https://api.blockcypher.com/v1/btc/test3/';
+
+        try {
+            $client = new Client(['base_uri' => $url]);
+            $response = $client->get($url, [
+                    'headers' => $headers,
+                    'json' => $params
+                ]
+            );
+            $bodyResponseString = $response->getBody()->getContents();
+            $bodyResponse = json_decode($bodyResponseString);
+            return $bodyResponseString;
+
+
+        } catch (RequestException $e) {
+            if ($e->hasResponse()) {
+                if ($e->getResponse()->getStatusCode() == '400') {
+                    return $e->getMessage();
+                }
+            }
+            return $e->getMessage();
+        } catch (ClientException $e) {
+            if ($e->getMessage() . indexOf("cannot be both set") >= 0) {
+                return Redirect::back()->withErrors('alert-danger', 'API error');
+            } else {
+                return Redirect::back()->withErrors('alert-danger', 'API error: ' . $e->getMessage());
+            }
+        }
+    }
+
+    /**
      * GET | Muestra el detalle de las 50 transferencias realizadas con un address especifico
      *
      * @return \Illuminate\Http\Response
