@@ -7,7 +7,7 @@ Cambios en el template
     background-repeat: no-repeat;
     margin: 21px auto;
     width: 100%;
-    height: 688px;
+    height: 430px;
 }
 
 .align-content-center.size {
@@ -15,9 +15,14 @@ Cambios en el template
     padding-top: 11%;
     padding-left: 2%;
     margin: auto;
-/* background-color: red;*/
+    /* background-color: red;*/
 }
 
 input#search_address {
-width: 64% !important;
+    width: 64% !important;
+}
+
+.active a {
+    color: red;
+    text-decoration: none;
 }

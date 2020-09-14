@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace TransferenciaCripto\Http\Controllers;
 
-use App\Transferencia;
+use TransferenciaCripto\Transferencia;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Validator;

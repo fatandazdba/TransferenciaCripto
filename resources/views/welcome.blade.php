@@ -12,14 +12,23 @@
                     <input type="text" class="form-control mb-2 mr-sm-2 input-group-lg" id="search_address"
                            placeholder="n3AmuXTmVtPRZfm1zqZG5bVFR4QGxZM2RE" value="n3AmuXTmVtPRZfm1zqZG5bVFR4QGxZM2RE"
                            name="address">
-                    <button type="submit" title="Search" class="btn btn-primary mb-2"> Buscar</button>
+                    <button type="submit" title="Search" class="btn btn-primary mb-2">
+                        <a href="javascript:void(0)" id="n3AmuXTmVtPRZfm1zqZG5bVFR4QGxZM2RE" class="btn btn-sm btn-primary boton_url">Buscar</a>
+                    </button>
+
                 </form>
             </div>
 
         </div>
     </div>
 
-    <?php
-           $name= App\Http\Controllers\TransferenciaController::addressFull($args)
-    ?>
+    @include('layouts.partials.page')
+    <div class="alert alert-success" style="display:none;">ALERTXXXX  {{ $success ?? 'CCCC' }}</div>
+
+    {{--{{ request()->routeIs('') ? 'hola' : 'no Hola' }}--}}
+    {{-- {{ var_dump( request()) }}--}}
+    {{-- {{ dump( request()) }} --}}
+
 @endsection
+
+
