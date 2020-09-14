@@ -175,11 +175,11 @@ return [
         /*
          * Application Service Providers...
          */
-        App\Providers\AppServiceProvider::class,
-        App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
+        TransferenciaCripto\Providers\AppServiceProvider::class,
+        TransferenciaCripto\Providers\AuthServiceProvider::class,
+        // TransferenciaCripto\Providers\BroadcastServiceProvider::class,
+        TransferenciaCripto\Providers\EventServiceProvider::class,
+        TransferenciaCripto\Providers\RouteServiceProvider::class,
 
     ],
 

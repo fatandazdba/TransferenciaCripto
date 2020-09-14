@@ -19,4 +19,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('/inicio', 'InicioController@inicio')->name('inicio');
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/callAddress', 'InicioController@callAddress')->name('callAddress');
+
+Route::resource('user', 'UserController');

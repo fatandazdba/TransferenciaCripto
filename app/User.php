@@ -1,12 +1,12 @@
 <?php
 
-namespace App;
+namespace TransferenciaCripto;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-use App\Transferencia;
+use TransferenciaCripto\Transferencia;
 class User extends Authenticatable
 {
     use Notifiable;
@@ -43,6 +43,6 @@ class User extends Authenticatable
      */
     public function transferencias()
     {
-        return $this->hasMany('App\Transferencia');
+        return $this->hasMany('TransferenciaCripto\Transferencia');
     }
 }

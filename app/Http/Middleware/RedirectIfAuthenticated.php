@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Middleware;
+namespace TransferenciaCripto\Http\Middleware;
 
-use App\Providers\RouteServiceProvider;
+use TransferenciaCripto\Providers\RouteServiceProvider;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 

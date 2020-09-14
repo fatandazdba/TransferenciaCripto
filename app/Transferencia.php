@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace TransferenciaCripto;
 
 use Illuminate\Database\Eloquent\Model;
 
