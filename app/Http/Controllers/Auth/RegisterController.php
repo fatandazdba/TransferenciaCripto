@@ -48,12 +48,13 @@ class RegisterController extends Controller
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
-    {
+    {  var_dump("data: " . json_encode($data));
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'name' => ['required'],
+            'email' => ['required'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
+        var_dump("validator");
     }
 
     /**
@@ -63,11 +64,14 @@ class RegisterController extends Controller
      * @return \TransferenciaCripto\User
      */
     protected function create(array $data)
-    {
-        return User::create([
+    {   var_dump("create: " . json_encode($data));
+        var_dump("create: " . json_encode($data['name']));
+
+    return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+        var_dump("create 1");
     }
 }

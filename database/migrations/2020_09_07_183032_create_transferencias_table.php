@@ -16,7 +16,7 @@ class CreateTransferenciasTable extends Migration
         Schema::create('transferencias', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->bigIncrements('id');
-            $table->string('hash, 200');
+            $table->string('hash', 255);
             $table->timestamps();
 
             $table->unsignedBigInteger('user_id');
