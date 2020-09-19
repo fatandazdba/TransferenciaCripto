@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+    @include('alerts.errors')
+    @include('alerts.request')
+    @include('alerts.success')
     <div class="container">
         <div class="container-fluid imagen_blockchain text-white">
 

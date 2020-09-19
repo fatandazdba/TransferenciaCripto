@@ -2,371 +2,47 @@
 
 namespace TransferenciaCripto\Http\Controllers;
 
-use TransferenciaCripto\Transferencia;
 use Illuminate\Http\Request;
-
-use Illuminate\Support\Facades\Validator;
-use GuzzleHttp\Client;
-use Http\Client\Exception\HttpException;
-use Http\Client\Response;
-use GuzzleHttp\Exception\RequestException;
 
 class TransferenciaController extends Controller
 {
-
-    public $messages = [
-        'required' => 'The :attribute field is required.',
-        'address' => 'The :attribute is incorrect.',
-        'min' => 'The :attribute is too short. (At least 6 characters)'
-    ];
-
     /**
-     * GET | Obtiene el ultimo hash realizado en blockchain
+     * Create a new controller instance.
      *
-     * @return \Illuminate\Http\Response
+     * @return void
      */
-    public function chainEndPoint(Request $request)
+    public function __construct()
     {
-        $token = env("BLOCKCYPHER_API_TOKEN");
-        $headers = [
-            'Accept' => 'application/json',
-            'Content-type' => 'application/json',
-        ];
-
-        $params = [
-            'limit' => '50',
-            'Token' => $token,
-        ];
-
-        $validator = \Illuminate\Support\Facades\Validator::make($request->all(), [
-            'address' => 'required',
-        ], $this->messages);
-
-        if ($validator->fails()) {
-            $error = $validator->errors()->first();
-            return response()->json(['data' => $error], 400);
-        }
-
-        $url = 'https://api.blockcypher.com/v1/btc/test3/';
-
-        try {
-            $client = new Client(['base_uri' => $url]);
-            $response = $client->get($url, [
-                    'headers' => $headers,
-                    'json' => $params
-                ]
-            );
-            $bodyResponseString = $response->getBody()->getContents();
-            $bodyResponse = json_decode($bodyResponseString);
-            return $bodyResponseString;
-
-
-        } catch (RequestException $e) {
-            if ($e->hasResponse()) {
-                if ($e->getResponse()->getStatusCode() == '400') {
-                    return $e->getMessage();
-                }
-            }
-            return $e->getMessage();
-        } catch (ClientException $e) {
-            if ($e->getMessage() . indexOf("cannot be both set") >= 0) {
-                return Redirect::back()->withErrors('alert-danger', 'API error');
-            } else {
-                return Redirect::back()->withErrors('alert-danger', 'API error: ' . $e->getMessage());
-            }
-        }
+        $this->middleware('auth');
     }
 
     /**
-     * GET | Muestra el detalle de las 50 transferencias realizadas con un address especifico
+     * Show the application dashboard.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function addressFull(Request $request)
+    public function addressFull()
     {
-        $token = env("BLOCKCYPHER_API_TOKEN");
-        $headers = [
-            'Accept' => 'application/json',
-            'Content-type' => 'application/json',
-        ];
-
-        $params = [
-            'limit' => '50',
-            'Token' => $token,
-        ];
-
-        $validator = \Illuminate\Support\Facades\Validator::make($request->all(), [
-            'address' => 'required',
-        ], $this->messages);
-
-        if ($validator->fails()) {
-            $error = $validator->errors()->first();
-            return response()->json(['data' => $error], 400);
-        }
-
-        $url = 'https://api.blockcypher.com/v1/btc/test3/addrs/' . $request->address . '/full?limit=50';
-
-        try {
-            $client = new Client(['base_uri' => $url]);
-            $response = $client->get($url, [
-                    'headers' => $headers,
-                    'json' => $params
-                ]
-            );
-            $bodyResponseString = $response->getBody()->getContents();
-            $bodyResponse = json_decode($bodyResponseString);
-            return $bodyResponseString;
-
-
-        } catch (RequestException $e) {
-            if ($e->hasResponse()) {
-                if ($e->getResponse()->getStatusCode() == '400') {
-                    return $e->getMessage();
-                }
-            }
-            return $e->getMessage();
-        } catch (ClientException $e) {
-            if ($e->getMessage() . indexOf("cannot be both set") >= 0) {
-                return Redirect::back()->withErrors('alert-danger', 'API error');
-            } else {
-                return Redirect::back()->withErrors('alert-danger', 'API error: ' . $e->getMessage());
-            }
-        }
+        return view('transferencia.addressFull');
     }
 
     /**
-     * GET | Muestra el detalle de las 50 transferencias realizadas con un address especifico
+     * Show the application dashboard.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function balanceAddress(Request $request)
+    public function microTransaccion()
     {
-        $token = env("BLOCKCYPHER_API_TOKEN");
-        $headers = [
-            'Accept' => 'application/json',
-            'Content-type' => 'application/json',
-        ];
-
-        $params = [
-            'limit' => '50',
-            'Token' => $token,
-        ];
-
-        $validator = \Illuminate\Support\Facades\Validator::make($request->all(), [
-            'address' => 'required',
-        ], $this->messages);
-
-        if ($validator->fails()) {
-            $error = $validator->errors()->first();
-            return response()->json(['data' => $error], 400);
-        }
-
-        $address = 'https://api.blockcypher.com/v1/btc/test3/addrs/' . $request->address . '/balance';
-
-        try {
-            $client = new Client(['base_uri' => $address]);
-            $response = $client->get($address, [
-                    'headers' => $headers,
-                    'json' => $params
-                ]
-            );
-            $bodyResponseString = $response->getBody()->getContents();
-            $bodyResponse = json_decode($bodyResponseString);
-            return $bodyResponseString;
-
-
-        } catch (RequestException $e) {
-            if ($e->hasResponse()) {
-                if ($e->getResponse()->getStatusCode() == '400') {
-                    return $e->getMessage();
-                }
-            }
-            return $e->getMessage();
-        } catch (ClientException $e) {
-            if ($e->getMessage() . indexOf("cannot be both set") >= 0) {
-                return Redirect::back()->withErrors('alert-danger', 'API error');
-            } else {
-                return Redirect::back()->withErrors('alert-danger', 'API error: ' . $e->getMessage());
-            }
-        }
+        return view('transferencia.microTransaccion');
     }
 
     /**
-     * GET | Muestra el detalle de las transferencia por medio del hash
+     * Show the application dashboard.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function transactionHashEndpoint(Request $request)
+    public function balanceAddress()
     {
-        $token = env("BLOCKCYPHER_API_TOKEN");
-        $headers = [
-            'Accept' => 'application/json',
-            'Content-type' => 'application/json',
-        ];
-
-        $params = [
-            'limit' => '50',
-            'Token' => $token,
-        ];
-
-        $validator = \Illuminate\Support\Facades\Validator::make($request->all(), [
-            'hash' => 'required',
-        ], $this->messages);
-
-        if ($validator->fails()) {
-            $error = $validator->errors()->first();
-            return response()->json(['data' => $error], 400);
-        }
-
-        $url = 'https://api.blockcypher.com/v1/btc/test3/txs/' . $request->hash;
-
-        try {
-            $client = new Client(['base_uri' => $url]);
-            $response = $client->get($url, [
-                    'headers' => $headers,
-                    'json' => $params
-                ]
-            );
-            $bodyResponseString = $response->getBody()->getContents();
-            $bodyResponse = json_decode($bodyResponseString);
-            return $bodyResponseString;
-
-
-        } catch (RequestException $e) {
-            if ($e->hasResponse()) {
-                if ($e->getResponse()->getStatusCode() == '400') {
-                    return $e->getMessage();
-                }
-            }
-            return $e->getMessage();
-        } catch (ClientException $e) {
-            if ($e->getMessage() . indexOf("cannot be both set") >= 0) {
-                return Redirect::back()->withErrors('alert-danger', 'API error');
-            } else {
-                return Redirect::back()->withErrors('alert-danger', 'API error: ' . $e->getMessage());
-            }
-        }
+        return view('transferencia.balanceAddress');
     }
-
-    /**
-     * POST | Crea una nueva bitcoin address para un usuario
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function address(Request $request)
-    {
-        $token = env("BLOCKCYPHER_API_TOKEN");
-        $headers = [
-            'Accept' => 'application/json',
-            'Content-type' => 'application/json',
-        ];
-
-        $params = [
-            'limit' => '50',
-            'Token' => '0cd201f0d5dd406c8c227751c3be22e4',
-        ];
-
-        $url = 'https://api.blockcypher.com/v1/btc/test3/addrs';
-
-        try {
-            $client = new Client(['base_uri' => $url]);
-            $response = $client->post($url, [
-                    'headers' => $headers,
-                    'json' => $params
-                ]
-            );
-            $bodyResponseString = $response->getBody()->getContents();
-            $bodyResponse = json_decode($bodyResponseString);
-            return $bodyResponseString;
-
-
-        } catch (RequestException $e) {
-            if ($e->hasResponse()) {
-                if ($e->getResponse()->getStatusCode() == '400') {
-                    return $e->getMessage();
-                }
-            }
-            return $e->getMessage();
-        } catch (ClientException $e) {
-            if ($e->getMessage() . indexOf("cannot be both set") >= 0) {
-                return Redirect::back()->withErrors('alert-danger', 'API error');
-            } else {
-                return Redirect::back()->withErrors('alert-danger', 'API error: ' . $e->getMessage());
-            }
-        }
-    }
-
-    /**
-     * Crea una nueva microTransferencia
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function microTransferencia(Request $request)
-    {
-        $token = env("BLOCKCYPHER_API_TOKEN");
-        /*$headers = [
-            //'Authorization' => 'Bearer ' . $token,
-            'Content-Type' => 'application/x-www-form-urlencoded',
-        ];
-
-        $form_params = [
-            'from_pubkey' => str_replace(' ', '', $request->from_pubkey),
-            'from_private' => str_replace(' ', '', $request->from_private),
-            'to_address' => str_replace(' ', '', $request->to_address),
-            'value_satoshis' => str_replace(' ', '', $request->value_satoshis),
-            'token' => str_replace(' ', '', $token),
-        ];*/
-
-        $validator = \Illuminate\Support\Facades\Validator::make($request->all(), [
-            'from_pubkey' => 'required',
-            'from_private' => 'required',
-            'to_address' => 'required',
-            'value_satoshis' => 'required',
-            'token' => 'required',
-        ], $this->messages);
-
-        if ($validator->fails()) {
-            $error = $validator->errors()->first();
-            return response()->json(['data' => $error], 400);
-        }
-
-        $url = 'https://api.blockcypher.com/v1/btc/test3/txs/micro';
-
-        try {
-            $client = new Client(['base_uri' => $url]);
-            $response = $client->post($url, [
-
-                    'headers' => [
-                        'Content-Type' => 'application/x-www-form-urlencoded',
-                    ],
-
-                    'form_params' => [
-                        'from_pubkey' => str_replace(' ', '', $request->from_pubkey),
-                        'from_private' => str_replace(' ', '', $request->from_private),
-                        'to_address' => str_replace(' ', '', $request->to_address),
-                        'value_satoshis' => str_replace(' ', '', $request->value_satoshis),
-                        'token' => str_replace(' ', '', $token),
-                    ]
-                ]
-            );
-            $bodyResponseString = $response->getBody()->getContents();
-            $bodyResponse = json_decode($bodyResponseString);
-            return $bodyResponseString;
-
-        } catch (RequestException $e) {
-            if ($e->hasResponse()) {
-                if ($e->getResponse()->getStatusCode() == '400') {
-                    return $e->getMessage();
-                }
-            }
-            return $e->getMessage();
-        } catch (ClientException $e) {
-            if ($e->getMessage() . indexOf("cannot be both set") >= 0) {
-                return Redirect::back()->withErrors('alert-danger', 'API error');
-            } else {
-                return Redirect::back()->withErrors('alert-danger', 'API error: ' . $e->getMessage());
-            }
-        }
-    }
-
 }

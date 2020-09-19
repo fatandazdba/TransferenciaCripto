@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
     <div class="container">
         <a class="navbar-brand" href="{{ url('/') }}">
-            {{ config('app.name', 'Laravel') }}
+            {{ config('app.name', 'TransferenciasCripto') }}
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -11,14 +11,14 @@
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav mr-auto">
                 <!--ul class="nav navbar-nav"-->
-                <li class="nav-item {{ request()->routeIs('about') ? active : '' }}"><a href="#"
-                                                                                        class="nav-link">About</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">Link</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">Service</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">More</a></li>
+                <li class="nav-item {{ request()->routeIs('about') ? 'active' : '' }}">
+                    <a href="{{ route('addressFull') }}" class="nav-link">Trasferencias realizadas</a>
+                </li>
+                <li class="nav-item"><a href="{{ route('transaccion') }}" class="nav-link">Nueva transferencia</a></li>
+                <li class="nav-item"><a href="{{ route('balanceAddress') }}" class="nav-link">Balance de address</a></li>
                 <!--/ul-->
             </ul>
-
+        {{ request()->routeIs('about') ? active : '' }}
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ml-auto">
                 <!-- Authentication Links -->

@@ -30,6 +30,10 @@ Route::get('/callAddress', 'InicioController@callAddress')->name('callAddress');
 
 Route::resource('/user', 'UserController');
 
+Route::get('/addressFull', 'TransferenciaController@addressFull')->name('addressFull');
+Route::get('/microTransaccion', 'TransferenciaController@microTransaccion')->name('transaccion');
+Route::get('/balanceAddress', 'TransferenciaController@balanceAddress')->name('balanceAddress');
+
 //admin
 /*Route::get('admin', function (){
   echo 'you are admin';

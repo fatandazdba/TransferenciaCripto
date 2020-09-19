@@ -5,7 +5,7 @@ namespace TransferenciaCripto\Http\Controllers;
 use Illuminate\Foundation\Providers\FormRequestServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
-use TransferenciaCripto\Http\Controllers\TransferenciaController;
+use TransferenciaCripto\Http\Controllers\TransferenciaApiController;
 
 class InicioController extends Controller
 {
@@ -28,7 +28,7 @@ class InicioController extends Controller
         return response()->json(['success'=>'asas', 'view'=>$view]);
 
 /*      $address= $request->address;
-        $transferenciaController = new TransferenciaController();
+        $transferenciaController = new TransferenciaApiController();
         $addressFull = $transferenciaController->addressFull($address);
         var_dump($addressFull);
         return view(addressFull, compact($addressFull));*/

@@ -18,8 +18,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('addressFull', 'TransferenciaController@addressFull');
-Route::get('balanceAddress', 'TransferenciaController@balanceAddress');
-Route::get('transactionHashEndpoint', 'TransferenciaController@transactionHashEndpoint');
-Route::post('address', 'TransferenciaController@address');
-Route::post('microTransferencia', 'TransferenciaController@microTransferencia');
+Route::get('addressFull', 'TransferenciaApiController@addressFull');
+Route::get('balanceAddress', 'TransferenciaApiController@balanceAddress');
+Route::get('transactionHashEndpoint', 'TransferenciaApiController@transactionHashEndpoint');
+Route::post('address', 'TransferenciaApiController@address');
+Route::post('microTransferencia', 'TransferenciaApiController@microTransferencia');
