@@ -303,26 +303,15 @@ class TransferenciaApiController extends Controller
      */
     public function microTransferencia(Request $request)
     {
-        $token = env("BLOCKCYPHER_API_TOKEN");
-        /*$headers = [
-            //'Authorization' => 'Bearer ' . $token,
-            'Content-Type' => 'application/x-www-form-urlencoded',
-        ];
-
-        $form_params = [
-            'from_pubkey' => str_replace(' ', '', $request->from_pubkey),
-            'from_private' => str_replace(' ', '', $request->from_private),
-            'to_address' => str_replace(' ', '', $request->to_address),
-            'value_satoshis' => str_replace(' ', '', $request->value_satoshis),
-            'token' => str_replace(' ', '', $token),
-        ];*/
+        //$token = env("BLOCKCYPHER_API_TOKEN");
+        $token = "0cd201f0d5dd406c8c227751c3be22e4";
 
         $validator = \Illuminate\Support\Facades\Validator::make($request->all(), [
             'from_pubkey' => 'required',
             'from_private' => 'required',
             'to_address' => 'required',
             'value_satoshis' => 'required',
-            'token' => 'required',
+            //'token' => 'required',
         ], $this->messages);
 
         if ($validator->fails()) {
@@ -331,7 +320,6 @@ class TransferenciaApiController extends Controller
         }
 
         $url = 'https://api.blockcypher.com/v1/btc/test3/txs/micro';
-
         try {
             $client = new Client(['base_uri' => $url]);
             $response = $client->post($url, [
@@ -341,11 +329,11 @@ class TransferenciaApiController extends Controller
                     ],
 
                     'form_params' => [
-                        'from_pubkey' => str_replace(' ', '', $request->from_pubkey),
-                        'from_private' => str_replace(' ', '', $request->from_private),
-                        'to_address' => str_replace(' ', '', $request->to_address),
-                        'value_satoshis' => str_replace(' ', '', $request->value_satoshis),
-                        'token' => str_replace(' ', '', $token),
+                        "from_pubkey" => "$request->from_pubkey",
+                        "from_private" => "$request->from_private",
+                        "to_address" => "$request->to_address",
+                        "value_satoshis" => "$request->value_satoshis",
+                        "token" => "$token",
                     ]
                 ]
             );
