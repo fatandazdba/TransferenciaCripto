@@ -44,34 +44,30 @@ class RegisterController extends Controller
     /**
      * Get a validator for an incoming registration request.
      *
-     * @param  array  $data
+     * @param  array $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
-    {  var_dump("data: " . json_encode($data));
+    {
         return Validator::make($data, [
             'name' => ['required'],
             'email' => ['required'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
-        var_dump("validator");
     }
 
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array  $data
+     * @param  array $data
      * @return \TransferenciaCripto\User
      */
     protected function create(array $data)
-    {   var_dump("create: " . json_encode($data));
-        var_dump("create: " . json_encode($data['name']));
-
-    return User::create([
+    {
+        return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
-        var_dump("create 1");
     }
 }

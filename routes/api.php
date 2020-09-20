@@ -14,12 +14,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+/*Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
-});
+});*/
 
+//Transferencia
 Route::get('addressFull', 'TransferenciaApiController@addressFull');
 Route::get('balanceAddress', 'TransferenciaApiController@balanceAddress');
 Route::get('transactionHashEndpoint', 'TransferenciaApiController@transactionHashEndpoint');
 Route::post('address', 'TransferenciaApiController@address');
 Route::post('microTransferencia', 'TransferenciaApiController@microTransferencia');
+
+//User
+Route::post('createTransferencia', 'UserApiController@createTransferencia');

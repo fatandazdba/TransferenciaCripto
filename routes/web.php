@@ -12,30 +12,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
 
-Route::get('/inicio', 'InicioController@inicio', [
-    "user" => 'freddy'
-])->name('inicio');
-
-//HOME
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('create', 'HomeController@create');
-
+//Inicio Controller
+Route::get('/', 'InicioController@inicio');
+Route::get('/inicio', 'InicioController@inicio')->name('inicio');
 Route::get('/callAddress', 'InicioController@callAddress')->name('callAddress');
 
-Route::resource('/user', 'UserController');
-
+//Transferencia Controlador
 Route::get('/addressFull', 'TransferenciaController@addressFull')->name('addressFull');
-Route::get('/microTransaccion', 'TransferenciaController@microTransaccion')->name('transaccion');
+Route::post('/transaccion', 'TransferenciaController@microTransaccion')->name('transaccion');
+Route::get('/viewTransaccion', 'TransferenciaController@viewMicroTransaccion')->name('viewTransaccion');
 Route::get('/balanceAddress', 'TransferenciaController@balanceAddress')->name('balanceAddress');
 
-//admin
-/*Route::get('admin', function (){
-  echo 'you are admin';
-})->middleware('admin');*/
+//admin middleware
+//Route::get('admin', function (){ echo 'you are admin'; })->middleware('admin');
 Route::get('admin', 'AdminController@index')->middleware('admin');

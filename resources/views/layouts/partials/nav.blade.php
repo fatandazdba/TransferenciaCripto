@@ -14,7 +14,7 @@
                 <li class="nav-item {{ request()->routeIs('about') ? 'active' : '' }}">
                     <a href="{{ route('addressFull') }}" class="nav-link">Trasferencias realizadas</a>
                 </li>
-                <li class="nav-item"><a href="{{ route('transaccion') }}" class="nav-link">Nueva transferencia</a></li>
+                <li class="nav-item"><a href="{{ route('viewTransaccion') }}" class="nav-link">Nueva transferencia</a></li>
                 <li class="nav-item"><a href="{{ route('balanceAddress') }}" class="nav-link">Balance de address</a></li>
                 <!--/ul-->
             </ul>
