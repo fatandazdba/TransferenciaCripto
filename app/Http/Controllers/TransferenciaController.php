@@ -10,8 +10,15 @@ use Session;
 use TransferenciaCripto\User;
 use TransferenciaCripto\Transferencia;
 
+use Illuminate\Support\Facades\Validator;
+use GuzzleHttp\Client;
+use Http\Client\Exception\HttpException;
+use Http\Client\Response;
+use GuzzleHttp\Exception\RequestException;
+
 class TransferenciaController extends Controller
 {
+    public const PORT = '8090';
     /**
      * Create a new controller instance.
      *
@@ -29,7 +36,18 @@ class TransferenciaController extends Controller
      */
     public function addressFull(Request $request)
     {
-        return view('transferencia.addressFull');
+        $user = User::find(Auth::user()->id);
+        return view('transferencia.addressFull', compact('user') );
+    }
+
+    public function addressFullCallApi(Request $request)
+    {
+        $user = User::find(Auth::user()->id);
+        $transferenciaApi = new TransferenciaApiController();
+        $data = $transferenciaApi->addressFull($request);
+        $datos= json_decode($data, true);
+
+        return view('transferencia.addressFullHistory' , compact('datos'));
     }
 
     /**

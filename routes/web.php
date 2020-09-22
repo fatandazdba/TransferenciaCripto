@@ -21,6 +21,7 @@ Route::get('/callAddress', 'InicioController@callAddress')->name('callAddress');
 
 //Transferencia Controlador
 Route::get('/addressFull', 'TransferenciaController@addressFull')->name('addressFull');
+Route::post('/addressFullCallApi', 'TransferenciaController@addressFullCallApi')->name('addressFullCallApi');
 Route::post('/transaccion', 'TransferenciaController@microTransaccion')->name('transaccion');
 Route::get('/viewTransaccion', 'TransferenciaController@viewMicroTransaccion')->name('viewTransaccion');
 Route::get('/balanceAddress', 'TransferenciaController@balanceAddress')->name('balanceAddress');

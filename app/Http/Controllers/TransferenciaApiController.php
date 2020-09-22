@@ -91,12 +91,13 @@ class TransferenciaApiController extends Controller
         ];
 
         $params = [
-            'limit' => '50',
+            'limit' => $request->limit,
             'Token' => $token,
         ];
 
         $validator = \Illuminate\Support\Facades\Validator::make($request->all(), [
             'address' => 'required',
+            'limit'   => 'required'
         ], $this->messages);
 
         if ($validator->fails()) {
@@ -104,7 +105,7 @@ class TransferenciaApiController extends Controller
             return response()->json(['data' => $error], 400);
         }
 
-        $url = 'https://api.blockcypher.com/v1/btc/test3/addrs/' . $request->address . '/full?limit=50';
+        $url = 'https://api.blockcypher.com/v1/btc/test3/addrs/' . $request->address . '/full?limit='. $request->limit;
 
         try {
             $client = new Client(['base_uri' => $url]);

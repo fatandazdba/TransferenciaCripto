@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
-    <div class="container">
+    <!-- div class="container" -->
         <a class="navbar-brand" href="{{ url('/') }}">
             {{ config('app.name', 'TransferenciasCripto') }}
         </a>
@@ -54,5 +54,5 @@
                 @endguest
             </ul>
         </div>
-    </div>
+    <!-- /div -->
 </nav>
