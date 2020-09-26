@@ -26,33 +26,25 @@
 
         <div class="card-deck">
             <div class="card">
-                <img class="card-img-top" src="..." alt="Card image cap">
+                <img class="card-img-top" src="images/bitcoin.jpg" alt="bitcoin">
                 <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                </div>
-                <div class="card-footer">
-                    <small class="text-muted">Last updated 3 mins ago</small>
+                    <h5 class="card-title">Bitcoin</h5>
+                    <p class="card-text">Bitcoin​ ​ es un protocolo, proyecto de código abierto y red peer-to-peer que se utiliza como criptomoneda, sistema de pago​ y mercancía.​​Fue concebida en 2008, ​ por una entidad conocida bajo el seudónimo de Satoshi Nakamoto, cuya identidad concreta se desconoce</p>
                 </div>
             </div>
             <div class="card">
-                <img class="card-img-top" src="..." alt="Card image cap">
+                <img class="card-img-top" src="images/testnet.png" alt="testnet">
                 <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-                </div>
-                <div class="card-footer">
-                    <small class="text-muted">Last updated 3 mins ago</small>
+                    <h5 class="card-title">Testnet</h5>
+                    <p class="card-text">
+                        Una red testnet es una herramienta imprescindible en el desarrollo de criptomonedas como Bitcoin. Gracias a este tipo de redes los equipos de desarrollo pueden hacer pruebas sin afectar el funcionamiento de la red original.</p>
                 </div>
             </div>
             <div class="card">
-                <img class="card-img-top" src="..." alt="Card image cap">
+                <img class="card-img-top" src="images/blockcypher.jpg" alt="blockcypher" width="50" height="140">
                 <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-                </div>
-                <div class="card-footer">
-                    <small class="text-muted">Last updated 3 mins ago</small>
+                    <h5 class="card-title">BlockCypher</h5>
+                    <p class="card-text">Ofrece los servicios de RESTful para poder interactuar con blockchain y lo hacen mediante transferencia de datos en lenguaje JSON. Las consultas pueden ser realizadas mediante http o https.</p>
                 </div>
             </div>
         </div>
