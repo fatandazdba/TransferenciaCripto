@@ -9,15 +9,20 @@ use TransferenciaCripto\Http\Controllers\TransferenciaApiController;
 use Session;
 use TransferenciaCripto\User;
 use TransferenciaCripto\Transferencia;
-
+use Response;
 use Illuminate\Support\Facades\Validator;
 use GuzzleHttp\Client;
 use Http\Client\Exception\HttpException;
-use Http\Client\Response;
 use GuzzleHttp\Exception\RequestException;
 
 class TransferenciaController extends Controller
 {
+    public $messages = [
+        'required' => 'The :attribute field is required.',
+        'address' => 'The :attribute is incorrect.',
+        'min' => 'The :attribute is too short. (At least 6 characters)'
+    ];
+
     public const PORT = '8090';
     /**
      * Create a new controller instance.
@@ -148,6 +153,14 @@ class TransferenciaController extends Controller
      */
     public function balanceAddress(Request $request)
     {
-        return view('transferencia.balanceAddress');
+        $user = User::find(Auth::user()->id);
+        $transferenciaApi = new TransferenciaApiController();
+        $data = $transferenciaApi->transactionHashEndpoint($request);
+        $datos= json_decode($data, true);
+        echo ("<script>console.warn('" . "hash: ". json_encode($request->hash) . "');</script>");
+        echo ("<script>console.warn('" . "datos: ". json_encode($datos) . "');</script>");
+
+        //dd($datos);
+        return view('transferencia.balanceAddress', compact('datos'));
     }
 }

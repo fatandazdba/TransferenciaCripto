@@ -30,9 +30,12 @@
                                            name="limit"
                                            value="{{ old('limit')}}"
                                     >
+                                    @error('limit')
+                                    <p class="error-message">{{ $message }}</p>
+                                    @enderror
                                 </div>
                                 <hr>
-                                <input class="btn btn-primary" type="submit" value="Enviar">
+                                <input class="btn btn-primary btn-lg btn-block" type="submit" value="Enviar">
                             </div>
                         </form>
                     </div>

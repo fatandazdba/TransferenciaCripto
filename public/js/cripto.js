@@ -113,3 +113,52 @@ $(document).on('click', '.boton_url', function () {
         }
     })
 })
+
+//----------------
+$(document).on('click','.addImage',function(event){  console.log("click addImage");
+    $(this).ajaxPost('addressFull','GET','principalPanel');
+})
+
+$(document).on('click','.deleteImage',function(event){
+    var id = $(this).attr('data-id');
+    $(this).ajaxPost('images/'+id,'DELETE','/');
+});
+
+$.fn.ajaxPost = function(url,method,sectionToRender) {  console.log("url: "+ url+ " method: " + method + " sectionRender: " + sectionToRender  );
+    $.ajax({
+        type: method,
+        url: url,
+        dataType: 'json',
+        success: function (data) {
+            ajaxRenderSection(sectionToRender)
+        },
+        error: function (data) {
+            var errors = data.responseJSON;
+            if (errors) {
+                $.each(errors, function (i) {
+                    console.log(errors[i]);
+                });
+            }
+        }
+    });
+}
+
+function ajaxRenderSection(url) {  console.log("url1" +  url);
+    $.ajax({
+        type: 'GET',
+        url: url,
+        dataType: 'json',
+        success: function (data) {
+            $('#principalPanel').empty().append($(data));
+        },
+        error: function (data) {
+            var errors = data.responseJSON;
+            if (errors) {
+                $.each(errors, function (i) {
+                    console.log(errors[i]);
+                });
+            }
+        }
+    });
+}
+//------------------

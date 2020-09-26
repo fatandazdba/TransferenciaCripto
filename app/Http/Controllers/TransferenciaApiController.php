@@ -136,7 +136,8 @@ class TransferenciaApiController extends Controller
     }
 
     /**
-     * GET | Muestra el detalle de las 50 transferencias realizadas con un address especifico
+     * GET | Muestra el balance del address
+     * @param address
      *
      * @return \Illuminate\Http\Response
      */
@@ -194,7 +195,7 @@ class TransferenciaApiController extends Controller
 
     /**
      * GET | Muestra el detalle de las transferencia por medio del hash
-     *
+     * @param hash de la transaccion
      * @return \Illuminate\Http\Response
      */
     public function transactionHashEndpoint(Request $request)
@@ -206,7 +207,6 @@ class TransferenciaApiController extends Controller
         ];
 
         $params = [
-            'limit' => '50',
             'Token' => $token,
         ];
 
