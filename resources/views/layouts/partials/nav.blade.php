@@ -17,7 +17,7 @@
 
                 <li class="nav-item"><a href="{{ route('viewTransaccion') }}" class="nav-link">Nueva transferencia</a>
                 </li>
-                <li class="nav-item"><a href="{{ route('user.show', \Illuminate\Support\Facades\Auth::user()->id) }}" class="nav-link">Mi cuenta</a>
+                <li class="nav-item"><a href="{{ route('userShow') }}" class="nav-link">Mi cuenta</a>
                 </li>
         @endif
         <!--/ul-->

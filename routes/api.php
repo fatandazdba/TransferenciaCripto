@@ -24,6 +24,7 @@ Route::get('balanceAddress', 'TransferenciaApiController@balanceAddress');
 Route::get('transactionHashEndpoint', 'TransferenciaApiController@transactionHashEndpoint');
 Route::post('address', 'TransferenciaApiController@address');
 Route::post('microTransferencia', 'TransferenciaApiController@microTransferencia');
+Route::post('updateUser', 'UserApiController@updateUser');
 
 //User
 Route::post('createTransferencia', 'UserApiController@createTransferencia');

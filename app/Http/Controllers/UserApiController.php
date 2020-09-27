@@ -75,4 +75,52 @@ class UserApiController extends Controller
             return $e->getMessage();
         }
     }
+
+    /**
+     * Edit user
+     * @param
+     * @return  id
+     */
+
+    public function updateUser(Request $request)
+    {
+        $validator = \Illuminate\Support\Facades\Validator::make($request->all(), [
+            'name' => 'required',
+            'email' => 'required|email',
+            //'password' => 'required|min:6',
+            //'confirmPass' => 'required|same:password',
+        ], $this->messages);
+        if ($validator->fails()) {
+            $error = $validator->errors()->first();
+            return response()->json(['data' => $error], 400);
+        }
+        try {
+            DB::beginTransaction();
+            $user = User::find($request->id_user);
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->save();
+            DB::commit();
+
+            return response()->json([
+                'message' => 'Successfully update user!',
+                'user' => ["id" => 1,"name" => "freddy freddy","email" => "freddy@espol.edu.ec",]
+                ],
+                200);
+
+        } catch (QueryException $ex) {
+            DB::rollback();
+            return response()->json(array('message' => $ex->errorInfo));
+        } catch (RequestException $e) {
+            DB::rollback();
+            return $e->getMessage();
+        } catch (ClientException $e) {
+            DB::rollback();
+            if ($e->getMessage() . indexOf("cannot be both set") >= 0) {
+                return Redirect::back()->withErrors('alert-danger', 'API error');
+            } else {
+                return Redirect::back()->withErrors('alert-danger', 'API error: ' . $e->getMessage());
+            }
+        }
+    }
 }

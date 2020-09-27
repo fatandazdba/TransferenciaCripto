@@ -3,6 +3,10 @@
 namespace TransferenciaCripto\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use TransferenciaCripto\User;
+use TransferenciaCripto\Http\Controllers\UserApiController;
+use Session;
 
 class UserController extends Controller
 {
@@ -13,7 +17,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+       // $user = User::find($id);
+       // return view("usuario.edit", compact('user'));
     }
 
     /**
@@ -37,26 +42,22 @@ class UserController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+
+
+    public function userShow(Request $request)
     {
-        //
+        $user = User::find(Auth::user()->id);
+
+        return view("usuario.edit", compact('user'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function userEdit(Request $request)
     {
-        //
+       $user = new UserApiController();
+       $datos = $user->updateUser($request);
+        Session::flash('message', "Los datos han sido actualizados de manera correcta.");
+        return redirect()->route('userShow', $request);
+
     }
 
     /**
