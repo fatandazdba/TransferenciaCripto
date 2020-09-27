@@ -18,22 +18,21 @@ class InicioController extends Controller
     {
         $success = ['success'=>'asas'];
         $view = view('layouts.partials.page', $success)->render();
-        //return view('layouts.partials.page', compact('success'));
-        //return response()->json(view('layouts.partials.page',['success'=>'asas']));
-        //return response()->json(['success'=>'asas', 'x' => 'zaza']);
 
-
-        //$html = \view('layouts.partials.page', compact('success'))->render();
         $html = View::make('layouts.partials.page', compact('success'))->render();
         return response()->json(['success'=>'asas', 'view'=>$view]);
 
-/*      $address= $request->address;
-        $transferenciaController = new TransferenciaApiController();
-        $addressFull = $transferenciaController->addressFull($address);
-        var_dump($addressFull);
-        return view(addressFull, compact($addressFull));*/
 
     }
 
+    public function addressSearchApi(Request $request)
+    {
+        $transferenciaApi = new TransferenciaApiController();
+        $data = $transferenciaApi->addressFull($request);
+        $datos= json_decode($data, true);
+
+        echo ("<script>console.warn('" . "MESSAJE: ". json_encode($datos) . "');</script>");
+        return view('search' , compact('datos'));
+    }
 
 }

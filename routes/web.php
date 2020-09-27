@@ -26,6 +26,7 @@ Route::post('/transaccion', 'TransferenciaController@microTransaccion')->name('t
 Route::get('/viewTransaccion', 'TransferenciaController@viewMicroTransaccion')->name('viewTransaccion');
 Route::get('/balanceAddress', 'TransferenciaController@balanceAddress')->name('balanceAddress');
 
+Route::post('/addressSearchApi', 'InicioController@addressSearchApi')->name('addressSearchApi');
 //Route::view('contentPanel', 'transferencia.contentPanel', ['user'=> ['uno', "dos"]]);
 //admin middleware
 //Route::get('admin', function (){ echo 'you are admin'; })->middleware('admin');
