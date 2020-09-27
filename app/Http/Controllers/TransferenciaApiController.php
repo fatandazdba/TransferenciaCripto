@@ -136,7 +136,7 @@ class TransferenciaApiController extends Controller
     }
 
     /**
-     * GET | Muestra el balance del address
+     * GET | Muestra el balance por medio del address
      * @param address
      *
      * @return \Illuminate\Http\Response
