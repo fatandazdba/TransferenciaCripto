@@ -2,13 +2,14 @@
 
 namespace TransferenciaCripto\Http\Controllers\Auth;
 
+use http\Env\Request;
 use TransferenciaCripto\Http\Controllers\Controller;
 use TransferenciaCripto\Providers\RouteServiceProvider;
 use TransferenciaCripto\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-
+use TransferenciaCripto\Http\Controllers\TransferenciaApiController;
 class RegisterController extends Controller
 {
     /*
@@ -62,12 +63,20 @@ class RegisterController extends Controller
      * @param  array $data
      * @return \TransferenciaCripto\User
      */
-    protected function create(array $data)
+    protected function create(array $data, $request)
     {
+        //dd($request);
+        $transferenciaApi = new TransferenciaApiController();
+        $addressFromAPI = $transferenciaApi->address($request);
+        $addressFromAPI= json_decode($addressFromAPI, true);
+        //dd($addressFromAPI);
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'address' => $addressFromAPI['address'],
         ]);
+
     }
 }

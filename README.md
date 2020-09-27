@@ -63,16 +63,20 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 ##Install bootstrap
 
 * Instala ui compose package
-composer require laravel/ui
+**composer require laravel/ui**
 
 * Instala bootstrap4
-php artisan ui bootstrap
+**php artisan ui bootstrap**
 
 * Instala bootstrap4 con autenticacion
-php artisan ui bootstrap --auth
+**php artisan ui bootstrap --auth**
 
 * Install npm
-npm install
+**npm install**
 
 * Run npm
-npm run dev
+**npm run dev**
+
+##Editar 'trait RegistersUsers'
+En el metodo **register** agregar el **$request** como parametro quedando de la siguiente manera
+* event(new Registered($user = $this->create($request->all(), $request))); 

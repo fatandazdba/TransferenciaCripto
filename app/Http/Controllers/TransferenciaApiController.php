@@ -263,7 +263,6 @@ class TransferenciaApiController extends Controller
         ];
 
         $params = [
-            'limit' => '50',
             'Token' => '0cd201f0d5dd406c8c227751c3be22e4',
         ];
 

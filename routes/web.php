@@ -32,5 +32,5 @@ Route::post('/addressSearchApi', 'InicioController@addressSearchApi')->name('add
 //Route::get('admin', function (){ echo 'you are admin'; })->middleware('admin');
 Route::get('admin', 'AdminController@index')->middleware('admin');
 
-Route::post('userEdit','UserController@userEdit')->name('userShow');
+Route::post('userEdit','UserController@userEdit')->name('userEdit');
 Route::get('userShow','UserController@userShow')->name('userShow');
