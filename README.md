@@ -50,7 +50,9 @@ para mas información visita la documentación oficial de Laravel: https://larav
 - **ojo** En la carpeta migracion corrige los unique **ejemplo** 
    $table->string('name',155)->unique();
 
-- **ejecuta** php artisan migrate:refresh --seed (En caso tengas algun problema con la DB hay un backup el cual puedes usar para crear la base)
+- **ejecuta** php artisan migrate:refresh --seed 
+
+- **opcional** (En caso tengas algun problema con la DB hay un backup el cual puedes usar para crear la base)
 
 - Editar la clase **trait RegistersUsers** editar el metodo **register** agregando el **$request** como parametro quedando de la siguiente manera
 **event(new Registered($user = $this->create($request->all(), $request)));**
@@ -58,4 +60,6 @@ para mas información visita la documentación oficial de Laravel: https://larav
 
 - **ejecuta** php artisan serve 
 
-- Puedes hacer login con **User:admin@admin.com**   **Password:admin**
+- **Ahora ya puedes registrar un nuevo usuario y empezar a probar**
+
+- **opcional** Para usar el usuario como administrador debes de cambiar la columna **admin** en la tabla **users** y asignarle un valor de 1 
