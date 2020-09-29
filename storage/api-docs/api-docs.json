@@ -1,0 +1,197 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Transferenciacripto",
+        "version": "1.0"
+    },
+    "servers": [
+        {
+            "url": "http://127.0.0.1:8000/"
+        }
+    ],
+    "paths": {
+        "/api/chainEndPoint": {
+            "get": {
+                "summary": "The returned object contains a litany of information about the blockchain, including its height, the time / hash of the last block, and more.",
+                "operationId": "TransferenciaCripto\\Http\\Controllers\\TransferenciaApiController::chainEndPoint",
+                "responses": {
+                    "200": {
+                        "description": "json"
+                    },
+                    "400": {
+                        "description": "The hash field is required."
+                    }
+                }
+            }
+        },
+        "/api/addressFull": {
+            "get": {
+                "summary": "Shows the details of the transfers made with a specific address.",
+                "operationId": "TransferenciaCripto\\Http\\Controllers\\TransferenciaApiController::addressFull",
+                "parameters": [
+                    {
+                        "name": "address",
+                        "in": "query",
+                        "description": "Address of the transfers to search",
+                        "required": true,
+                        "style": "form",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Number of searches",
+                        "required": true,
+                        "style": "form",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "json"
+                    },
+                    "400": {
+                        "description": "All fields are required."
+                    },
+                    "404": {
+                        "description": "Bad request\r\n     * "
+                    }
+                }
+            }
+        },
+        "/api/balanceAddress": {
+            "get": {
+                "summary": "Show the balance through the address.",
+                "operationId": "TransferenciaCripto\\Http\\Controllers\\TransferenciaApiController::balanceAddress",
+                "parameters": [
+                    {
+                        "name": "address",
+                        "in": "query",
+                        "description": "Address of the balance to search",
+                        "required": true,
+                        "style": "form",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "json"
+                    },
+                    "400": {
+                        "description": "The address field is required."
+                    }
+                }
+            }
+        },
+        "/api/transactionHashEndpoint": {
+            "get": {
+                "summary": "Get transaction information based on its hash",
+                "operationId": "TransferenciaCripto\\Http\\Controllers\\TransferenciaApiController::transactionHashEndpoint",
+                "parameters": [
+                    {
+                        "name": "hash",
+                        "in": "query",
+                        "description": "Hash of the transfer made",
+                        "required": true,
+                        "style": "form",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "json"
+                    },
+                    "400": {
+                        "description": "The hash field is required."
+                    }
+                }
+            }
+        },
+        "/api/address": {
+            "post": {
+                "summary": "Create a new bitcoins address for a user",
+                "operationId": "TransferenciaCripto\\Http\\Controllers\\TransferenciaApiController::address",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {}
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
+        "/api/microTransferencia": {
+            "post": {
+                "description": "Make a transfer to an address by entering your public, private key, address and value in satoshis",
+                "operationId": "TransferenciaCripto\\Http\\Controllers\\TransferenciaApiController::microTransferencia",
+                "requestBody": {
+                    "description": "Data required",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "from_pubkey",
+                                    "from_private",
+                                    "to_address",
+                                    "value_satoshis"
+                                ],
+                                "properties": {
+                                    "from_pubkey": {
+                                        "type": "string",
+                                        "example": "0359f12e977d2c46526ce084c96afb476b50b0262245ed8d25c0960e68e7c3cdec"
+                                    },
+                                    "from_private": {
+                                        "type": "string",
+                                        "example": "d9ed9f7232ec4e8d1ad217a09dc18642ac19feea8a060461545313a2d2d25b1f"
+                                    },
+                                    "to_address": {
+                                        "type": "string",
+                                        "example": "mgP6ca1ZXjhgsjzdFfmBH9jMVUMpWV8jYt"
+                                    },
+                                    "value_satoshis": {
+                                        "type": "integer",
+                                        "example": "7500"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Data was created without errors"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "security": [
+        []
+    ]
+}

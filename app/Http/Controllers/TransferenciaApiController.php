@@ -11,6 +11,11 @@ use Http\Client\Exception\HttpException;
 use Http\Client\Response;
 use GuzzleHttp\Exception\RequestException;
 
+/**
+ * @OA\Info(title="API Transferenciacripto", version="1.0")
+ *
+ * @OA\Server(url="http://127.0.0.1:8000/")
+ */
 class TransferenciaApiController extends Controller
 {
 
@@ -21,9 +26,18 @@ class TransferenciaApiController extends Controller
     ];
 
     /**
-     * GET | Obtiene el ultimo hash realizado en blockchain
-     *
-     * @return \Illuminate\Http\Response
+     * @OA\Get(
+     *     path="/api/chainEndPoint",
+     *     summary="The returned object contains a litany of information about the blockchain, including its height, the time / hash of the last block, and more.",
+     *     @OA\Response(
+     *         response=200,
+     *         description="json"
+     *     ),
+     *     @OA\Response(
+     *         response="400",
+     *         description="The hash field is required."
+     *     )
+     * )
      */
     public function chainEndPoint(Request $request)
     {
@@ -34,18 +48,8 @@ class TransferenciaApiController extends Controller
         ];
 
         $params = [
-            'limit' => '50',
             'Token' => $token,
         ];
-
-        $validator = \Illuminate\Support\Facades\Validator::make($request->all(), [
-            'address' => 'required',
-        ], $this->messages);
-
-        if ($validator->fails()) {
-            $error = $validator->errors()->first();
-            return response()->json(['data' => $error], 400);
-        }
 
         $url = 'https://api.blockcypher.com/v1/btc/test3/';
 
@@ -78,9 +82,44 @@ class TransferenciaApiController extends Controller
     }
 
     /**
-     * GET | Muestra el detalle de las 50 transferencias realizadas con un address especifico
+     * @OA\Get(
+     *     path="/api/addressFull",
+     *     summary="Shows the details of the transfers made with a specific address.",
      *
-     * @return \Illuminate\Http\Response
+     *     @OA\Parameter(
+     *         name="address",
+     *         in="query",
+     *         description="Address of the transfers to search",
+     *         required=true,
+     *         @OA\Schema(
+     *         type="string",
+     *         ),
+     *         style="form"
+     *     ),
+     *    @OA\Parameter(
+     *         name="limit",
+     *         in="query",
+     *         description="Number of searches",
+     *         required=true,
+     *         @OA\Schema(
+     *         type="integer",
+     *         ),
+     *         style="form"
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="json"
+     *     ),
+     *     @OA\Response(
+     *         response="400",
+     *         description="All fields are required."
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Bad request
+     * "
+     *     ),
+     * )
      */
     public function addressFull(Request $request)
     {
@@ -97,7 +136,7 @@ class TransferenciaApiController extends Controller
 
         $validator = \Illuminate\Support\Facades\Validator::make($request->all(), [
             'address' => 'required',
-            'limit'   => 'required'
+            'limit' => 'required'
         ], $this->messages);
 
         if ($validator->fails()) {
@@ -105,7 +144,7 @@ class TransferenciaApiController extends Controller
             return response()->json(['data' => $error], 400);
         }
 
-        $url = 'https://api.blockcypher.com/v1/btc/test3/addrs/' . $request->address . '/full?limit='. $request->limit;
+        $url = 'https://api.blockcypher.com/v1/btc/test3/addrs/' . $request->address . '/full?limit=' . $request->limit;
 
         try {
             $client = new Client(['base_uri' => $url]);
@@ -136,10 +175,29 @@ class TransferenciaApiController extends Controller
     }
 
     /**
-     * GET | Muestra el balance por medio del address
-     * @param address
+     * @OA\Get(
+     *     path="/api/balanceAddress",
+     *     summary="Show the balance through the address.",
      *
-     * @return \Illuminate\Http\Response
+     *     @OA\Parameter(
+     *         name="address",
+     *         in="query",
+     *         description="Address of the balance to search",
+     *         required=true,
+     *         @OA\Schema(
+     *         type="string",
+     *         ),
+     *         style="form"
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="json"
+     *     ),
+     *     @OA\Response(
+     *         response="400",
+     *         description="The address field is required."
+     *     )
+     * )
      */
     public function balanceAddress(Request $request)
     {
@@ -194,9 +252,29 @@ class TransferenciaApiController extends Controller
     }
 
     /**
-     * GET | Muestra el detalle de las transferencia por medio del hash
-     * @param hash de la transaccion
-     * @return \Illuminate\Http\Response
+     * @OA\Get(
+     *     path="/api/transactionHashEndpoint",
+     *     summary="Get transaction information based on its hash",
+     *
+     *     @OA\Parameter(
+     *         name="hash",
+     *         in="query",
+     *         description="Hash of the transfer made",
+     *         required=true,
+     *         @OA\Schema(
+     *         type="string",
+     *         ),
+     *         style="form"
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="json"
+     *     ),
+     *     @OA\Response(
+     *         response="400",
+     *         description="The hash field is required."
+     *     )
+     * )
      */
     public function transactionHashEndpoint(Request $request)
     {
@@ -250,9 +328,15 @@ class TransferenciaApiController extends Controller
     }
 
     /**
-     * POST | Crea una nueva bitcoin address para un usuario
-     *
-     * @return \Illuminate\Http\Response
+     * @OA\Post(path="/api/address",
+     *   summary="Create a new bitcoins address for a user",
+     *   @OA\RequestBody(
+     *       @OA\MediaType(
+     *           mediaType="multipart/form-data",
+     *       )
+     *   ),
+     *   @OA\Response(response="200", description="successful operation")
+     * )
      */
     public function address(Request $request)
     {
@@ -297,9 +381,28 @@ class TransferenciaApiController extends Controller
     }
 
     /**
-     * Crea una nueva microTransferencia
-     *
-     * @return \Illuminate\Http\Response
+     * @OA\Post(
+     * path="/api/microTransferencia",
+     * description="Make a transfer to an address by entering your public, private key, address and value in satoshis",
+     * @OA\RequestBody(
+     *    required=true,
+     *    description="Data required",
+     *    @OA\JsonContent(
+     *       required={"from_pubkey","from_private", "to_address", "value_satoshis"},
+     *       @OA\Property(property="from_pubkey", type="string", example="0359f12e977d2c46526ce084c96afb476b50b0262245ed8d25c0960e68e7c3cdec"),
+     *       @OA\Property(property="from_private", type="string", example="d9ed9f7232ec4e8d1ad217a09dc18642ac19feea8a060461545313a2d2d25b1f"),
+     *       @OA\Property(property="to_address", type="string", example="mgP6ca1ZXjhgsjzdFfmBH9jMVUMpWV8jYt"),
+     *       @OA\Property(property="value_satoshis", type="integer", example="7500"),
+     *    ),
+     * ),
+     *  @OA\Response(
+     *    response=200,
+     *    description="Successful",
+     *    @OA\JsonContent(
+     *       @OA\Property(property="message", type="string", example="Data was created without errors")
+     *        )
+     *     )
+     * )
      */
     public function microTransferencia(Request $request)
     {

@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('addressFull', 'TransferenciaApiController@addressFull');
 Route::get('balanceAddress', 'TransferenciaApiController@balanceAddress');
 Route::get('transactionHashEndpoint', 'TransferenciaApiController@transactionHashEndpoint');
+Route::get('chainEndPoint', 'TransferenciaApiController@chainEndPoint');
 Route::post('address', 'TransferenciaApiController@address');
 Route::post('microTransferencia', 'TransferenciaApiController@microTransferencia');
 Route::post('updateUser', 'UserApiController@updateUser');
