@@ -6,7 +6,7 @@
     @include('alerts.success')
     <div class="container">
 
-        <h1>Users</h1>
+        <h1>Usuarios</h1>
         <div class="users">
             <table class="table">
                 <thead>
