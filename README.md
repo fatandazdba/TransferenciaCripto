@@ -2,9 +2,14 @@
 
 El proyecto web facilita la transferencia de monedas virtuales a través de la red Blockchain, en donde se conectará a un servicio web el cual hará el enlace al almacenamiento de datos a la cadena de bloques blockchain en la red.  La aplicación podrá consultar todas las transferencias realizadas por los usuarios, desde donde se mostrarán el monto de los valores transferidos, la comisión cobrada por la transacción y los destinatarios a quien ha sido realizada.
 
-## Instalar el proyecto
+Para llevar un control de las personas que utilizan la aplicación se realizará un módulo de creación, login, autenticación y todo lo relacionado a la gestión de cuentas de usuarios.
 
-# Requerimientos del sistema
+El API que se utilizará para realizar las transacciones en blockchain será proporcionada por BlockCypher la cual garantiza una infraestructura de confianza y rapidez en transferencias. La criptomoneda que se usará para este proyecto será Testnet3 la cual ayudará a desarrollar y comprobar las transferencias en su red de pruebas.
+
+
+# Instalar el proyecto
+
+## Requerimientos del sistema
 
 1) debes tener la versión de PHP mayor o igual a la 7.2.5. 
 para mas información visita la documentación oficial de Laravel: https://laravel.com/docs/7.x
@@ -13,7 +18,7 @@ para mas información visita la documentación oficial de Laravel: https://larav
 
 3) Debes de tener instalado git en mi caso la version de windows: https://gitforwindows.org/
 
-# Instrucciones
+## Instrucciones
 
 - **clona el proyecto ejecutando** git clone https://github.com/fatandazdba/TransferenciaCripto.git
 
