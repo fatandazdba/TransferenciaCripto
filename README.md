@@ -1,82 +1,57 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
+## TransferenciasCripto
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+El proyecto web facilita la transferencia de monedas virtuales a través de la red Blockchain, en donde se conectará a un servicio web el cual hará el enlace al almacenamiento de datos a la cadena de bloques blockchain en la red.  La aplicación podrá consultar todas las transferencias realizadas por los usuarios, desde donde se mostrarán el monto de los valores transferidos, la comisión cobrada por la transacción y los destinatarios a quien ha sido realizada.
 
-## About Laravel
+## Instalar el proyecto
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+# Requerimientos del sistema
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+1) debes tener la versión de PHP mayor o igual a la 7.2.5. 
+para mas información visita la documentación oficial de Laravel: https://laravel.com/docs/7.x
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+2) debes tener instalado composer en tu equipo: https://getcomposer.org/
 
-## Learning Laravel
+3) Debes de tener instalado git en mi caso la version de windows: https://gitforwindows.org/
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+# Instrucciones
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- **clona el proyecto ejecutando** git clone https://github.com/fatandazdba/TransferenciaCripto.git
 
-## Laravel Sponsors
+- **ejecuta** composer install
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+- copiar el archivo **".env.example"** y pegarlo con el nombre: **".env"**. 
 
-### Premium Partners
+- **ejecuta** php artisan key:generate
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[OP.GG](https://op.gg)**
+- **Instala ui compose package ejecutando** composer require laravel/ui
 
-## Contributing
+- **Instala bootstrap4 ejecutando** php artisan ui bootstrap
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- **Instala bootstrap4 con autenticacio ejecutando** php artisan ui bootstrap --auth
 
-## Code of Conduct
+- **Install npm ejecutando** npm install
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+- **Run npm ejecutando** npm run dev
 
-## Security Vulnerabilities
+- Configura la nueva base de datos modificando el archivo ".env":
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=transferencia
+DB_USERNAME=root
+DB_PASSWORD=
 
-## License
+- **ojo** En la carpeta migracion corrige los unique **ejemplo** 
+$table->string('name',155)->unique();
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+- **ejecuta** php artisan migrate:refresh --seed (En caso tengas algun problema con la DB hay un backup el cual puedes usar para crear la base)
 
-##Install bootstrap
+** Editar 'trait RegistersUsers'
+En el proyecto debes de buscar el metodo **register** agregar el **$request** como parametro quedando de la siguiente manera
+**event(new Registered($user = $this->create($request->all(), $request)));**
 
-* Instala ui compose package
-**composer require laravel/ui**
 
-* Instala bootstrap4
-**php artisan ui bootstrap**
+**ejecuta** php artisan serve 
 
-* Instala bootstrap4 con autenticacion
-**php artisan ui bootstrap --auth**
-
-* Install npm
-**npm install**
-
-* Run npm
-**npm run dev**
-
-##Editar 'trait RegistersUsers'
-En el metodo **register** agregar el **$request** como parametro quedando de la siguiente manera
-* event(new Registered($user = $this->create($request->all(), $request))); 
+- Puedes hacer login con **User:admin@admin.com**   **Password:admin**
