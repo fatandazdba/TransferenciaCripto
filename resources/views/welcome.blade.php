@@ -17,7 +17,7 @@
                     <input type="hidden" class="form-control"
                            id="limit"
                            name="limit"
-                           value="70"
+                           value="30"
                     >
 
                     <input type="text"

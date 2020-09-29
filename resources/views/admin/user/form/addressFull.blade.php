@@ -14,7 +14,7 @@
                    id="limit"
                    placeholder="Numero de busquedas que desea realizar"
                    name="limit"
-                   value="70"
+                   value="50"
             >
         </div>
         <input id="btn_hash_admin" class="btn btn btn-sm" type="submit" value="Transferencias">
