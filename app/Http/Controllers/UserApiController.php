@@ -104,8 +104,41 @@ class UserApiController extends Controller
 
             return response()->json([
                 'message' => 'Successfully update user!',
-                'user' => ["id" => 1,"name" => "freddy freddy","email" => "freddy@espol.edu.ec",]
+                'user' => $user
                 ],
+                200);
+
+        } catch (QueryException $ex) {
+            DB::rollback();
+            return response()->json(array('message' => $ex->errorInfo));
+        } catch (RequestException $e) {
+            DB::rollback();
+            return $e->getMessage();
+        } catch (ClientException $e) {
+            DB::rollback();
+            if ($e->getMessage() . indexOf("cannot be both set") >= 0) {
+                return Redirect::back()->withErrors('alert-danger', 'API error');
+            } else {
+                return Redirect::back()->withErrors('alert-danger', 'API error: ' . $e->getMessage());
+            }
+        }
+    }
+
+    /**
+     * Get all users
+     *
+     * @return  json of Users
+     */
+
+    public function getUsers(Request $request)
+    {
+        try {
+            $users = User::all();
+
+            return response()->json([
+                'message' => 'Successfully get users!',
+                'user' => $users
+            ],
                 200);
 
         } catch (QueryException $ex) {

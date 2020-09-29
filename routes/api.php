@@ -25,6 +25,7 @@ Route::get('transactionHashEndpoint', 'TransferenciaApiController@transactionHas
 Route::post('address', 'TransferenciaApiController@address');
 Route::post('microTransferencia', 'TransferenciaApiController@microTransferencia');
 Route::post('updateUser', 'UserApiController@updateUser');
+Route::get('getUsers', 'UserApiController@getUsers');
 
 //User
 Route::post('createTransferencia', 'UserApiController@createTransferencia');
