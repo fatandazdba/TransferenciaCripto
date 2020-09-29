@@ -24,7 +24,7 @@ para mas información visita la documentación oficial de Laravel: https://larav
 
 - **ejecuta** composer install
 
-- copiar el archivo **".env.example"** y pegarlo con el nombre: **".env"**. 
+- copiar el archivo **.env.example** y pegarlo con el nombre: **.env**. 
 
 - **ejecuta** php artisan key:generate
 
