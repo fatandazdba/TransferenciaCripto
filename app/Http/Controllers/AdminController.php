@@ -3,6 +3,7 @@
 namespace TransferenciaCripto\Http\Controllers;
 
 use Illuminate\Http\Request;
+use TransferenciaCripto\User;
 
 class AdminController extends Controller
 {
@@ -18,7 +19,8 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin.admin');
+        $users = User::paginate(4);
+        return view('admin.admin', compact('users'));
     }
 
     /**
@@ -49,9 +51,11 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function showUserAdmin(Request $request)
     {
-        //
+        $user = User::find($request->user_id);
+
+        return view("admin.user.edit", compact('user'));
     }
 
     /**
@@ -60,7 +64,7 @@ class AdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function editUserAdmin($id)
     {
         //
     }

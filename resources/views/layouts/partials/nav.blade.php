@@ -15,9 +15,17 @@
                     <a href="{{ route('addressFull') }}" class="nav-link">Trasferencias realizadas</a>
                 </li>
 
-                <li class="nav-item"><a href="{{ route('viewTransaccion') }}" class="nav-link">Nueva transferencia</a>
+                <li class="nav-item">
+                    <a href="{{ route('viewTransaccion') }}" class="nav-link">Nueva transferencia</a>
                 </li>
-                <li class="nav-item"><a href="{{ route('userShow') }}" class="nav-link">Mi cuenta</a>
+
+                @if(\Illuminate\Support\Facades\Auth::user()->id === 1)
+                    <li class="nav-item">
+                        <a href="http://127.0.0.1:8000/admin" class="nav-link">Lista de usuarios</a>
+                    </li>
+                @endif
+                <li class="nav-item">
+                    <a href="{{ route('userShow') }}" class="nav-link">Mi cuenta</a>
                 </li>
         @endif
         <!--/ul-->

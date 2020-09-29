@@ -28,9 +28,13 @@ Route::get('/balanceAddress', 'TransferenciaController@balanceAddress')->name('b
 
 Route::post('/addressSearchApi', 'InicioController@addressSearchApi')->name('addressSearchApi');
 //Route::view('contentPanel', 'transferencia.contentPanel', ['user'=> ['uno', "dos"]]);
+
 //admin middleware
 //Route::get('admin', function (){ echo 'you are admin'; })->middleware('admin');
 Route::get('admin', 'AdminController@index')->middleware('admin');
+Route::get('showUserAdmin', 'AdminController@showUserAdmin')->middleware('admin');
+Route::post('editUserAdmin', 'AdminController@editUserAdmin')->middleware('admin');
 
-Route::post('userEdit','UserController@userEdit')->name('userEdit');
+//Usuarios
 Route::get('userShow','UserController@userShow')->name('userShow');
+Route::post('userEdit','UserController@userEdit')->name('userEdit');

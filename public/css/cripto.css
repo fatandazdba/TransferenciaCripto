@@ -204,3 +204,9 @@ svg.top_check.bi.bi-check-all {
     background: #fff;
     min-height: 460px;
 }
+
+input#btn_hash_admin {
+    margin-top: -30px;
+    color: #1d68a7;
+    text-decoration: underline;
+}
