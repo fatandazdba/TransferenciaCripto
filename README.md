@@ -62,4 +62,4 @@ para mas información visita la documentación oficial de Laravel: https://larav
 
 - **Ahora ya puedes registrar un nuevo usuario y empezar a probar**
 
-- **opcional** Para usar el usuario como administrador debes de cambiar la columna **admin** en la tabla **users** y asignarle un valor de 1 
+- **opcional:** Para usar el usuario como administrador debes de cambiar la columna **admin** en la tabla **users** y asignarle un valor de 1 
