@@ -39,24 +39,23 @@ para mas información visita la documentación oficial de Laravel: https://larav
 - **Run npm ejecutando** npm run dev
 
 - Configura la nueva base de datos modificando el archivo ".env":
-
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=transferencia
-DB_USERNAME=root
-DB_PASSWORD=
-
+```
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE=transferencia
+    DB_USERNAME=root
+    DB_PASSWORD=
+```
 - **ojo** En la carpeta migracion corrige los unique **ejemplo** 
-$table->string('name',155)->unique();
+   $table->string('name',155)->unique();
 
 - **ejecuta** php artisan migrate:refresh --seed (En caso tengas algun problema con la DB hay un backup el cual puedes usar para crear la base)
 
-** Editar 'trait RegistersUsers'
-En el proyecto debes de buscar el metodo **register** agregar el **$request** como parametro quedando de la siguiente manera
+- Editar la clase **trait RegistersUsers** editar el metodo **register** agregando el **$request** como parametro quedando de la siguiente manera
 **event(new Registered($user = $this->create($request->all(), $request)));**
 
 
-**ejecuta** php artisan serve 
+- **ejecuta** php artisan serve 
 
 - Puedes hacer login con **User:admin@admin.com**   **Password:admin**
