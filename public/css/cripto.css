@@ -258,3 +258,10 @@ id#img_my_perfil {
 thead.head {
     background-color: #6cb2eb;
 }
+
+.titulo_balance {
+    background-color: #6cb2eb;
+    width: 100%;
+    padding-top: 12px;
+    text-align: center;
+}
