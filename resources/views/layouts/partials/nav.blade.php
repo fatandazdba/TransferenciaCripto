@@ -25,7 +25,7 @@
                     </li>
                 @endif
                 <li class="nav-item">
-                    <a href="{{ route('userShow') }}" class="nav-link">Mi cuenta</a>
+                    <a href="{{ route('userShow') }}" class="nav-link">Mi perfil</a>
                 </li>
         @endif
         <!--/ul-->

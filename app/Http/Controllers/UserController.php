@@ -10,6 +10,12 @@ use Session;
 
 class UserController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -52,11 +58,15 @@ class UserController extends Controller
 
     public function userEdit(Request $request)
     {
-       $user = new UserApiController();
-       $datos = $user->updateUser($request);
+        $user = new UserApiController();
+        $datos = $user->updateUser($request);
         Session::flash('message', "Los datos han sido actualizados de manera correcta.");
-        return redirect()->route('userShow', $request);
 
+        if (Auth::user()->admin === 1) {
+            return redirect()->back();
+        } else {
+            return redirect()->route('userShow', $request);
+        }
     }
 
     /**

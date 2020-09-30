@@ -35,7 +35,6 @@
                    disabled
             >
         </div>
-        <hr>
         <input class="btn btn-primary btn-lg btn-block" type="submit" value="Editar">
     </div>
 </form>

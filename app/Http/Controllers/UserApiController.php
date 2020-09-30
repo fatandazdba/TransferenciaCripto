@@ -102,11 +102,7 @@ class UserApiController extends Controller
             $user->save();
             DB::commit();
 
-            return response()->json([
-                'message' => 'Successfully update user!',
-                'user' => $user
-                ],
-                200);
+            return response()->json( $user,200);
 
         } catch (QueryException $ex) {
             DB::rollback();

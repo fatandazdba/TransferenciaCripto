@@ -6,10 +6,13 @@
     @include('alerts.success')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header"><h2>Actualizar usuario</h2></div>
-                    <div class="card-body">
+            <div class="col-md-5 perfil_from">
+                <id id="img_my_perfil">
+                    <img src="images/admin.png" width="130" height="130">
+                </id>
+                <div class="card perfil">
+
+
 
                         <form action="userEdit" method="POST" >
                             {{@csrf_field()}}
@@ -47,15 +50,13 @@
                                            value="{{ old('address', $user->address)}}"
                                     disabled>
                                 </div>
-                                <hr>
                                 <input class="btn btn-primary btn-lg btn-block" type="submit" value="Editar">
                             </div>
                         </form>
-                    </div>
+
                 </div>
             </div>
         </div>
-
 
     </div>
 @endsection
