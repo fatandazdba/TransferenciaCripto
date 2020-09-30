@@ -7,7 +7,7 @@
             <div class="card">
 
 
-                <div class="card-body">
+                <div class="card-body marco">
                     <h3>Registro</h3>
                     <hr>
                     <form method="POST" action="{{ route('register') }}">
