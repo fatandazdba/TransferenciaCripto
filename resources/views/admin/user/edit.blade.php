@@ -25,7 +25,7 @@
                                     >
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control"
+                                    <input type="text" class="form-control name"
                                            id="name"
                                            placeholder="Name"
                                            name="name"
@@ -33,8 +33,7 @@
                                     >
                                 </div>
                                 <div class="form-group">
-                                    <input type="text"
-                                           class="form-control"
+                                    <input type="text" class="form-control email"
                                            id="email"
                                            placeholder="Email"
                                            name="email"
@@ -42,8 +41,7 @@
                                     >
                                 </div>
                                 <div class="form-group">
-                                    <input type="text"
-                                           class="form-control"
+                                    <input type="text" class="form-control address"
                                            id="address"
                                            placeholder="Address"
                                            name="address"

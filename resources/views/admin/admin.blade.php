@@ -9,7 +9,7 @@
         <h1>Usuarios</h1>
         <div class="users">
             <table class="table">
-                <thead>
+                <thead class="head">
                 <th>Nombre</th>
                 <th>Correo</th>
                 <th>Address</th>

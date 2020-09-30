@@ -16,7 +16,7 @@
                         <h2>Transferencias</h2>
                         <p>Informacion de transaferencias realizadas por <strong class="dash-label color-size-address"><em>{{ $datos['address'] }}</em></strong>.</p>
                         <table class="table table-hover background_white">
-                            <thead>
+                            <thead class="head">
                             <tr>
                                 <th>No.</th>
                                 <th>Form</th>

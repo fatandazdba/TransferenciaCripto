@@ -42,25 +42,25 @@
                     <div class="dash dash-3">
                         <h2>Transferencias</h2>
                         <p>Informacion de transaferencias realizadas por <strong class="dash-label color-size-address"><em>{{ $datos['address'] }}</em></strong>.</p>
-                        <table class="table table-hover background_white">
-                            <thead>
+                        <table class="table table-hover background_white .table-bordered">
+                            <thead class="head">
                             <tr>
-                                <th>No.</th>
-                                <th>Form</th>
-                                <th>to</th>
-                                <th>Value (BTC)</th>
-                                <th>Hash</th>
-                                <th>Confirmación</th>
-                                <th col-md-2></th>
+                                <th scope="col">No.</th>
+                                <th scope="col">Form</th>
+                                <th scope="col">to</th>
+                                <th scope="col">Value (BTC)</th>
+                                <th scope="col">Hash</th>
+                                <th scope="col">Confirmación</th>
+                                <th scope="col"col-md-2></th>
                             </tr>
                             </thead>
                             <tbody>
 
                             @for($x = 0; $x < count($datos['txs']); $x++ )
                                 <tr>
-                                    <td class="text-center">{{$x+1}}</td>
-                                    <td>{{ $datos["txs"][$x]["inputs"][0]['addresses'][0] }}</td>
-                                    <td>{{ $datos["txs"][$x]['outputs'][0]['addresses'][0] }}</td>
+                                    <td scope="row" class="text-center">{{$x+1}}</td>
+                                    <td scope="row">{{ $datos["txs"][$x]["inputs"][0]['addresses'][0] }}</td>
+                                    <td scope="row">{{ $datos["txs"][$x]['outputs'][0]['addresses'][0] }}</td>
                                     <td class="text-center">{{ $datos["txs"][$x]['outputs'][0]['value'] }}</td>
                                     <td data-title="{{$datos["txs"][$x]["hash"] }}" title="{{$datos["txs"][$x]["hash"] }}">
                                         <!--a href="#"> {{ substr ($datos["txs"][$x]["hash"], 0 , 3)  }}...</a-->
